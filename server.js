@@ -1,11 +1,21 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const employeeRouter = require('./routes/EmployeeRoutes.js');
-// var cors = require('cors')
+var cors = require('cors')
 
 const app = express();
 app.use(express.json());
-// app.use(cors())
+
+
+const port = process.env.PORT || 9090;
+
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200
+}
+
+app.use(cors(corsOptions))
 
 
 
@@ -16,7 +26,7 @@ mongoose.connect('mongodb+srv://std:std1234@cluster0.b1201.mongodb.net/101274109
 
 app.use(employeeRouter);
 
-const port = process.env.PORT || 9090;
+
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
