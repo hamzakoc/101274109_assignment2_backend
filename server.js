@@ -16,6 +16,7 @@ mongoose.connect('mongodb+srv://std:std1234@cluster0.b1201.mongodb.net/101274109
 
 app.use(employeeRouter);
 
+const port = process.env.PORT || 9090;
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
